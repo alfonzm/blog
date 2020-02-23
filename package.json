@@ -5,7 +5,7 @@
   "author": "Alfonz",
   "private": true,
   "scripts": {
-    "dev": "ENV=development nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
