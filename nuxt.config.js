@@ -1,3 +1,4 @@
+import FMMode from "frontmatter-markdown-loader/mode"
 
 export default {
   mode: 'universal',
@@ -42,6 +43,7 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    // '@nuxtjs/markdownit',
   ],
   /*
   ** Axios module configuration
@@ -57,6 +59,25 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      config.module.rules.push(
+        {
+          test: /\.md$/,
+          loader: "frontmatter-markdown-loader",
+        }
+      )
     }
-  }
+  },
+  generate: {
+    routes: async () => {
+      const fs = require('fs');
+      const path = require('path');
+      return await fs.readdirSync('./assets/content/md').map(file => {
+        const filename = path.parse(file).name
+        return `/blog/${filename}`
+      })
+    },
+  },
+  markdownit: {
+    injected: true,
+  },
 }

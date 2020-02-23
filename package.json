@@ -5,15 +5,18 @@
   "author": "Alfonz",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "ENV=development nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
     "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/dotenv": "^1.4.0"
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/markdownit": "^1.2.7",
+    "nuxt": "^2.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "frontmatter-markdown-loader": "^3.1.0"
+  }
 }
