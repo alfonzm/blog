@@ -1,4 +1,5 @@
-import FMMode from "frontmatter-markdown-loader/mode"
+import hljs from 'highlight.js'
+import md from 'markdown-it'
 
 export default {
   mode: 'universal',
@@ -19,7 +20,10 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: {
+    color: 'tomato',
+    throttle: 0,
+  },
   /*
   ** Global CSS
   */
@@ -34,6 +38,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/tailwindcss',
   ],
   /*
   ** Nuxt.js modules
@@ -43,7 +48,6 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    // '@nuxtjs/markdownit',
   ],
   /*
   ** Axios module configuration
@@ -63,6 +67,21 @@ export default {
         {
           test: /\.md$/,
           loader: "frontmatter-markdown-loader",
+          options: {
+            markdownIt: {
+              html: true,
+              linkify: true,
+              highlight: function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                  try {
+                    return hljs.highlight(lang, str).value;
+                  } catch (__) {}
+                }
+
+                return ''; // use external default escaping
+              }
+            }
+          },
         }
       )
     }
@@ -76,8 +95,5 @@ export default {
         return `/blog/${filename}`
       })
     },
-  },
-  markdownit: {
-    injected: true,
   },
 }

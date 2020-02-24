@@ -1,6 +1,15 @@
+import _ from 'lodash'
+import moment from 'moment'
+
 export const state = () => ({
   blogPosts: [],
 });
+
+export const getters = {
+  blogPosts: state => {
+    return _.orderBy(state.blogPosts, blogPost => moment(blogPost.attributes.date), ['desc'])
+  }
+}
 
 export const mutations = {
   SET_BLOG_POSTS(state, list) {
