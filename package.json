@@ -14,7 +14,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "highlight.js": "^9.18.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "markdown-it": "^10.0.0",
     "moment": "^2.24.0",
     "nuxt": "^2.0.0"
